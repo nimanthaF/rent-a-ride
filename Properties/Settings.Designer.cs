@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace car_rental.Properties
+namespace car_rental_1.Properties
 {
 
 

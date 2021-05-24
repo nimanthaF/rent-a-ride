@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace car_rental
+namespace car_rental_1
 {
     static class Program
     {

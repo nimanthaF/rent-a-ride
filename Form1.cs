@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
-namespace car_rental
+namespace car_rental_1
 {
     public partial class Form1 : Form
     {
@@ -19,17 +20,29 @@ namespace car_rental
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string MyConString = "datasource=localhost;port=3306;username=root;password=;database=car_rent";
+            MySqlConnection connection = new MySqlConnection(MyConString);
+            MySqlCommand command;
+            MySqlDataReader mdr;
 
-        }
+            connection.Open();
+            string query = "Select * from users Where username='" + txtUsername.Text + "'and password='" + txtPassword.Text + "'";
+            command = new MySqlCommand(query, connection);
+            mdr = command.ExecuteReader();
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            
+            if (mdr.Read())
+            {
+                //MessageBox.Show("Login Successful!");
+                Main main_obj = new Main();
+                this.Hide();
+                main_obj.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Incorrect Login Information! Try again.");
+            }
+            connection.Close();
         }
     }
 }
